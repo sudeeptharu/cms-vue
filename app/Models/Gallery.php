@@ -11,7 +11,7 @@ class Gallery extends Model
     use HasFactory;
     use HasUuids;
     protected $fillable = [
-        'is_published'=>0
+        'is_published'=>0,'title','description'
     ];
     public function images()
     {
