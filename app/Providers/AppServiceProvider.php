@@ -4,8 +4,12 @@ namespace App\Providers;
 
 use App\Repositories\BaseRepository;
 use App\Repositories\CategoryRepository;
+use App\Repositories\GalleryRepository;
+use App\Repositories\ImageRepository;
 use App\Repositories\Interfaces\CategoryRepositoryInterface;
 use App\Repositories\Interfaces\EloquentRepositoryInterface;
+use App\Repositories\Interfaces\GalleryRepositoryInterface;
+use App\Repositories\Interfaces\ImageRepositoryInterface;
 use App\Repositories\Interfaces\LinkRepositoryInterface;
 use App\Repositories\Interfaces\PageRepositoryInterface;
 use App\Repositories\Interfaces\PostRepositoryInterface;
@@ -38,6 +42,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(WebSettingRepositoryInterface::class,WebSettingRepository::class);
         $this->app->bind(ServiceRepositoryInterface::class,ServiceRepository::class);
         $this->app->bind(ScrollerRepositoryInterface::class,ScrollerRepository::class);
+        $this->app->bind(GalleryRepositoryInterface::class,GalleryRepository::class);
+        $this->app->bind(ImageRepositoryInterface::class,ImageRepository::class);
     }
 
     /**

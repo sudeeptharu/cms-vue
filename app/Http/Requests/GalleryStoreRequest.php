@@ -32,7 +32,7 @@ class GalleryStoreRequest extends FormRequest
         return [
             'title.required'=>'title required',
             'description.required'=>'description required',
-
+            'is_published.required'=>'required'
         ];
     }
 }

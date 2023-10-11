@@ -29,7 +29,8 @@ class ImageStoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'gallery_id.required'=>'must choose gallery'
+            'gallery_id.required'=>'must choose gallery',
+            'image.required'=>'image required '
         ];
     }
 }

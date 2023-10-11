@@ -39,7 +39,7 @@ class GalleryController extends Controller
     {
         try {
             DB::beginTransaction();
-            $galleryService->update($request->validated());
+            $galleryService->create($request->validated());
             DB::commit();
             [$msg,$status] = array($this->getSuccessMessage('gallery'),Response::HTTP_CREATED);
             //            return redirect ('api/category');

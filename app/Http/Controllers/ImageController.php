@@ -40,9 +40,9 @@ class ImageController extends Controller
     {
         try {
             DB::beginTransaction();
-            $imageService->update($request->validated());
+            $imageService->create($request->validated());
             DB::commit();
-            [$msg,$status] = array($this->getUpdateSuccessMessage('image'),Response::HTTP_CREATED);
+            [$msg,$status] = array($this->getSuccessMessage('image'),Response::HTTP_CREATED);
             //            return redirect ('api/category');
         }catch (CustomException $exception){
             DB::rollBack();
