@@ -21,7 +21,7 @@ class MenuController extends Controller
      */
     public function index(MenuService $menuService)
     {
-        $menu=$menuService->getAllMenus(3);
+        $menu=$menuService->getAllMenus();
         return MenuResource::collection($menu);
     }
 
@@ -40,9 +40,9 @@ class MenuController extends Controller
     {
         try {
             DB::beginTransaction();
-            $menuService->update($request->validated());
+            $menuService->create($request->validated());
             DB::commit();
-            [$msg,$status] = array($this->getUpdateSuccessMessage('menu'),Response::HTTP_CREATED);
+            [$msg,$status] = array($this->getSuccessMessage('menu'),Response::HTTP_CREATED);
             //            return redirect ('api/category');
         }catch (CustomException $exception){
             DB::rollBack();
@@ -50,7 +50,7 @@ class MenuController extends Controller
 
         }catch (\Exception $exception){
             DB::rollBack();
-            [$msg,$status]=array($this->getErrorMessage('something went wrong'),Response::HTTP_INTERNAL_SERVER_ERROR);
+            [$msg,$status]=array($exception->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
         }
         return response()->json([$msg,$status]);
     }
@@ -88,7 +88,7 @@ class MenuController extends Controller
 
         }catch (\Exception $exception){
             DB::rollBack();
-            [$msg,$status]=array($this->getErrorMessage('something went wrong'),Response::HTTP_INTERNAL_SERVER_ERROR);
+            [$msg,$status]=array($exception->getMessage(),Response::HTTP_INTERNAL_SERVER_ERROR);
         }
         return response()->json([$msg,$status]);
     }

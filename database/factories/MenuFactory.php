@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class MneuFactory extends Factory
+class MenuFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -22,7 +22,7 @@ class MneuFactory extends Factory
             'url'=>fake()->url,
             'is_published'=>fake()->boolean,
             'opens_in_new_tab'=>fake()->boolean,
-            'parent_id'=>fake()->numberBetween(1,45)
+            'parent_id'=>null
         ];
     }
 }

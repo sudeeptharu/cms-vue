@@ -2,7 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Exceptions\ErrorPageException;
+//use App\Exceptions\ErrorPageException;
 use App\Repositories\Interfaces\EloquentRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;

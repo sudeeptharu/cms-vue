@@ -13,6 +13,10 @@ class Menu extends Model
     protected $fillable=[
         'title','is_published','opens_in_new_tab','url', 'parent_id','order'
     ];
+    public function parent()
+    {
+        return $this->belongsTo('Menu','parent_id');
+    }
     public function children()
     {
         return $this->hasMany('Menu','parent_id','id');

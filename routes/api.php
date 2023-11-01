@@ -8,6 +8,7 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ScrollerController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\SliderController;
 use App\Http\Controllers\VideoController;
 use App\Http\Controllers\WebSettingController;
 use Illuminate\Http\Request;
@@ -76,7 +77,7 @@ Route::get('/mediaManager', function (){
     return view('dashboard.pages.mediamanager');
 });
 Route::get('/mediaManager/image', [GalleryController::class,'allUploadedImages']);
-Route::post('/mediaManager/uploadmedia', [GalleryController::class,'mediaImageUpload']);
+Route::post('/mediaManager/uploadMedia', [GalleryController::class,'mediaImageUpload']);
 Route::get('/mediaManager/destroyImage/{imageDeletion}', [GalleryController::class,'destroyImage']);
 //image
 Route::get('image',[ImageController::class,'index']);
@@ -98,5 +99,9 @@ Route::get('webSetting',[WebSettingController::class,'index']);
 Route::post('/webSetting/save',[WebSettingController::class,'store']);
 Route::put('/webSetting/update',[WebSettingController::class,'update']);
 Route::get('/webSetting/delete/{id}',[WebSettingController::class,'destroy']);
-
+//slider
+Route::get('slider',[SliderController::class,'index']);
+Route::post('/slider/save',[SliderController::class,'store']);
+Route::put('/slider/update',[SliderController::class,'update']);
+Route::get('slider/delete/{id}',[SliderController::class,'destroy']);
 

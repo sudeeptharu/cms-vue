@@ -77,9 +77,9 @@ class SliderController extends Controller
     {
         try {
             DB::beginTransaction();
-            $sliderService->create($request->validated());
+            $sliderService->update($request->validated());
             DB::commit();
-            [$msg,$status] = array($this->getSuccessMessage('slider'),Response::HTTP_CREATED);
+            [$msg,$status] = array($this->getUpdateSuccessMessage('slider'),Response::HTTP_CREATED);
             //            return redirect ('api/category');
         }catch (CustomException $exception){
             DB::rollBack();

@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Gallery;
 use App\Models\Image;
 use App\Models\Link;
+use App\Models\Menu;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\Scroller;
@@ -40,6 +41,7 @@ class DatabaseSeeder extends Seeder
        Video::factory()->count(30)->create();
        Service::factory()->count(30)->create();
        Slider::factory()->count(30)->create();
+       Menu::factory()->count(7)->create();
        Gallery::factory(5)->has(Image::factory()->count(10))->create();
     }
 }

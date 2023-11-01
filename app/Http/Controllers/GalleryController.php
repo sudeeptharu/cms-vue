@@ -113,4 +113,26 @@ class GalleryController extends Controller
         }
         return response()->json([$msg,$status]);
     }
+    public function mediaImageUpload(Request $request){
+        dd("yess it worked");
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            //$folder = public_path('images/gallery/'.$request->gallery_id);
+            $folder =  storage_path('/app/public/images');
+            $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+            $slider_image_success = $file->move($folder, $filename);
+            if ($slider_image_success) {
+                return response()->json([
+                    "status" => "success",
+                ], 200);
+            }else{
+                return response()->json([
+                    "status" => "error"
+                ], 400);
+            }
+
+        } else {
+            return response()->json('error: upload file not found.', 400);
+        }
+    }
 }

@@ -33,7 +33,9 @@ class MenuStoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required'=>'title required'
+            'title.required'=>'title required',
+            'order.required'=>'order required',
+            'url.required'=>'url required',
         ];
     }
 }

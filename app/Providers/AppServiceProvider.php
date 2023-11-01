@@ -11,17 +11,21 @@ use App\Repositories\Interfaces\EloquentRepositoryInterface;
 use App\Repositories\Interfaces\GalleryRepositoryInterface;
 use App\Repositories\Interfaces\ImageRepositoryInterface;
 use App\Repositories\Interfaces\LinkRepositoryInterface;
+use App\Repositories\Interfaces\MenuRepositoryInterface;
 use App\Repositories\Interfaces\PageRepositoryInterface;
 use App\Repositories\Interfaces\PostRepositoryInterface;
 use App\Repositories\Interfaces\ScrollerRepositoryInterface;
 use App\Repositories\Interfaces\ServiceRepositoryInterface;
+use App\Repositories\Interfaces\SliderRepositoryInterface;
 use App\Repositories\Interfaces\VideoRepositoryInterface;
 use App\Repositories\Interfaces\WebSettingRepositoryInterface;
 use App\Repositories\LinkRepository;
+use App\Repositories\MenuRepository;
 use App\Repositories\PageRepository;
 use App\Repositories\PostRepository;
 use App\Repositories\ScrollerRepository;
 use App\Repositories\ServiceRepository;
+use App\Repositories\SliderRepository;
 use App\Repositories\VideoRepository;
 use App\Repositories\WebSettingRepository;
 use Illuminate\Support\ServiceProvider;
@@ -44,6 +48,8 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(ScrollerRepositoryInterface::class,ScrollerRepository::class);
         $this->app->bind(GalleryRepositoryInterface::class,GalleryRepository::class);
         $this->app->bind(ImageRepositoryInterface::class,ImageRepository::class);
+        $this->app->bind(MenuRepositoryInterface::class,MenuRepository::class);
+        $this->app->bind(SliderRepositoryInterface::class,SliderRepository::class);
     }
 
     /**

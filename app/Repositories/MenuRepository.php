@@ -13,8 +13,8 @@ class MenuRepository extends BaseRepository implements MenuRepositoryInterface
     {
         parent::__construct($model);
     }
-    public function getAllMenus($paginator)
+    public function getAllMenus()
     {
-        return $this->model->orderBy('id','DESC')->paginate($paginator);
+        return $this->model->all();
     }
 }

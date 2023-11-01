@@ -11,9 +11,9 @@ class MenuService
     {
 
     }
-    public function getAllMenus($paginator)
+    public function getAllMenus()
     {
-        return $this->menuRepository->getAllMenus($paginator);
+        return $this->menuRepository->getAllMenus();
     }
     public function create($request)
     {
