@@ -3,6 +3,8 @@
         <el-row class="row" >
             <el-col :span="12" >
                 <el-button @click="addDrawer = true">Add Page</el-button>
+                <el-button @click="router.push({name: 'addPage'})">Add </el-button>
+
             </el-col>
             <!--            <el-col :span="12">-->
             <!--                <el-input v-model="search" size="small" placeholder="Type to search" />-->

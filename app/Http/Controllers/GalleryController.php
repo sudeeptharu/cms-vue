@@ -10,6 +10,8 @@ use App\Models\Gallery;
 use App\Services\GalleryService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 use App\Traits\SuccessMessage;
 class GalleryController extends Controller
@@ -114,25 +116,67 @@ class GalleryController extends Controller
         return response()->json([$msg,$status]);
     }
     public function mediaImageUpload(Request $request){
-        dd("yess it worked");
-        if ($request->hasFile('file')) {
-            $file = $request->file('file');
-            //$folder = public_path('images/gallery/'.$request->gallery_id);
-            $folder =  storage_path('/app/public/images');
-            $filename = uniqid() . '.' . $file->getClientOriginalExtension();
-            $slider_image_success = $file->move($folder, $filename);
-            if ($slider_image_success) {
-                return response()->json([
-                    "status" => "success",
-                ], 200);
-            }else{
-                return response()->json([
-                    "status" => "error"
-                ], 400);
+        if ($request->hasFile('images')) {
+            $uploadedFiles = $request->file('images');
+
+            // Process and save each uploaded file
+            foreach ($uploadedFiles as $file) {
+                // You can store the file in the storage or public directory
+                // Example: Storage::disk('public')->putFile('uploads', $file);
+
+                // Or you can store it in the public directory
+                $file->store('uploads', 'public');
             }
 
-        } else {
-            return response()->json('error: upload file not found.', 400);
+            return response()->json(['message' => 'Files uploaded successfully']);
         }
+
+        return response()->json(['message' => 'No files were uploaded'], 400);
+//        if ($request->hasFile('file')) {
+//            $file = $request->file('file');
+//            //$folder = public_path('images/gallery/'.$request->gallery_id);
+//            $folder =  storage_path('/app/public/images');
+//            $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+//            $slider_image_success = $file->move($folder, $filename);
+//            if ($slider_image_success) {
+//                return response()->json([
+//                    "status" => "success",
+//                ], 200);
+//            }else{
+//                return response()->json([
+//                    "status" => "error"
+//                ], 400);
+//            }
+//
+//        } else {
+//            return response()->json('error: upload file not found.', 400);
+//        }
+    }
+    public function allUploadedImages(): \Illuminate\Http\JsonResponse
+    {
+        $imagePath = 'public/images'; // Change this to the appropriate path where your images are stored in the public storage directory.
+        $files = collect(File::files(storage_path('app/public/uploads')))->sortByDesc(function ($file) {
+            return $file->getCTime();
+        });
+//        $files = Storage::files($imagePath);
+
+        $images = [];
+        foreach ($files as $file) {
+            $extension = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+            if (in_array($extension, ['jpg', 'jpeg', 'png', 'gif', 'bmp'])) {
+                $images[] = basename($file);
+            }
+        }
+
+        return response()->json(['uploads' => $images]);
+    }
+    public function destroyImage($image)
+    {
+        if(Storage::exists("public/uploads/".$image)){
+            Storage::delete("public/uploads/".$image);
+        }else{
+            return response("image not found");
+        }
+        return redirect('mediaManager');
     }
 }

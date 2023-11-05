@@ -30,7 +30,13 @@ const routes = [
                     {
                         path: '/page',
                         name: 'page',
-                        component: _=>import('../views/pages/page/Page.vue')
+                        component: _=>import('../views/pages/page/Page.vue'),
+
+                    },
+                    {
+                      path: 'page/create',
+                      name: 'addPage',
+                      component:_ =>   import('../views/pages/page/AddPage.vue'),
                     },
                     {
                         path: '/post',
@@ -70,7 +76,8 @@ const routes = [
                     {
                         path: '/mediaManager',
                         name: 'mediaManager',
-                        component: _ => import('../views/pages/mediaManager/MediaManager.vue')
+                        component: _ => import('../views/pages/mediaManager/MediaManager.vue'),
+
                     }
                 ]
             },
