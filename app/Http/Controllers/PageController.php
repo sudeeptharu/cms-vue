@@ -66,9 +66,19 @@ class PageController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Page $page)
+    public function getPageById(PageService $pageService,$id)
     {
-        //
+        try{
+            DB::beginTransaction();
+            $page=$pageService->getPageById($id);
+            DB::commit();
+            [$msg,$status]=array($page,Response::HTTP_CREATED);
+        }catch (CustomException $exception){
+            DB::rollBack();
+            [$msg,$status]=array($exception->getMessage(),Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+        return response()->json($msg,$status);
+
     }
 
     /**
@@ -98,7 +108,7 @@ class PageController extends Controller
     {
         try {
             DB::beginTransaction();
-            $pageService->destroy($id);
+            $pageService->destroyPage($id);
             [$msg,$status]=array(
                 $this->getDestroySuccessMEssage('Page'),
                 Response::HTTP_CREATED

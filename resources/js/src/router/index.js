@@ -39,6 +39,12 @@ const routes = [
                       component:_ =>   import('../views/pages/page/AddPage.vue'),
                     },
                     {
+                        path: 'page/page-edit/:id',
+                        name: 'editPage',
+                        component:_ =>   import('../views/pages/page/EditPage.vue'),
+                        props:true
+                    },
+                    {
                         path: '/post',
                         name: 'post',
                         component: _=>import('../views/pages/post/Post.vue')

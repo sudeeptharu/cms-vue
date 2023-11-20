@@ -6,4 +6,5 @@ interface PageRepositoryInterface
 {
 
     public function getAllPages(int $paginator);
+    public function getPageById(string $id);
 }

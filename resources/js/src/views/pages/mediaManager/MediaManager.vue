@@ -39,7 +39,7 @@
         <el-row :gutter="20">
             <el-col :span="14">
                 <el-image
-                    style="width: 100%; "
+                    style="width: 300px; height: 300px "
                     :zoom-rate="1.2"
                     :max-scale="7"
                     :min-scale="0.2"

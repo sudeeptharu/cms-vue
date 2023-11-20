@@ -14,4 +14,5 @@ const app = createApp(App)
 app.use(pinia)
 app.use(ElementPlus)
 app.use(router)
+app.provide('$route', router.currentRoute);
 app.mount('#app')

@@ -17,4 +17,10 @@ class PageRepository extends BaseRepository implements PageRepositoryInterface
     {
         return $this->model->orderBy('id','DESC')->paginate($paginator);
     }
+    public function getPageById(string $id)
+    {
+        // TODO: Implement getPageById() method.
+        $page=$this->model->where('id',$id)->get();
+        return $page;
+    }
 }

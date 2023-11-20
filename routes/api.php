@@ -51,6 +51,7 @@ Route::get('page/add/{id?}',[PageController::class,'pageAdd']);
 Route::post('/page/save',[PageController::class,'store']);
 Route::put('/page/update',[PageController::class,'update']);
 Route::get('page/delete/{id}',[PageController::class,'destroy']);
+Route::get('page/getPageById/{id}',[PageController::class,'getPageById']);
 //scroller
 Route::get('scroller',[ScrollerController::class,'index']);
 Route::post('/scroller/save',[ScrollerController::class,'store']);

@@ -48,9 +48,15 @@ class PageService
         if(!$page) throw new CustomException('cannot find id');
         return $page;
     }
-    public function destroy($id)
+    public function getPageById($id)
+    {
+        $page= $this->pageRepository->getPageById($id);
+        return $page;
+    }
+    public function destroyPage($id)
     {
         $destroy=$this->pageRepository->destroy($id);
-        if(!$destroy) throw new CustomException('id not found');
+        if($destroy!=1) throw new CustomException('id not found');
+        return $destroy;
     }
 }

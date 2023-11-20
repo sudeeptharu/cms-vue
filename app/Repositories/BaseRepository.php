@@ -7,7 +7,7 @@ use App\Repositories\Interfaces\EloquentRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-class BaseRepository
+class BaseRepository implements EloquentRepositoryInterface
 {
     public function __construct(Model $model)
     {
